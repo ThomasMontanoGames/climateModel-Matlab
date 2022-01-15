@@ -1,12 +1,18 @@
-function atmosphere = updateTemps(atmosphere,dt,solarConst,sunLon)
+function newAtmosphere = updateTemps(atmosphere,dt,solarConst,sunLon)
+
+    newAtmosphere = atmosphere;
 
     for i = 1:size(atmosphere,1)
        for j = 1:size(atmosphere,2)
           
-           atmosphere{i,j}.temp = atmosphere{i,j}.temp + dt*(...
+           newAtmosphere{i,j}.temp = atmosphere{i,j}.temp + dt*(...
                solarConst*(1-atmosphere{i,j}.albedo)*max(0,sin(atmosphere{i,j}.lat))...
                *max(0,sin(atmosphere{i,j}.lon-sunLon)) - (5.67E-8)*(atmosphere{i,j}.temp^4)...
                )/atmosphere{i,j}.heatCap;
+           
+%            if(isinf(newAtmosphere{i,j}.temp))
+%               j; 
+%            end
             
        end
     end

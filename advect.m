@@ -1,4 +1,6 @@
-function atmosphere = advect(atmosphere,dt)
+function newAtmosphere = advect(atmosphere,dt)
+
+    newAtmosphere = atmosphere;
 
     for i = 1:size(atmosphere,1)
        for j = 1:size(atmosphere,2)
@@ -6,12 +8,16 @@ function atmosphere = advect(atmosphere,dt)
            hGrad = horzGrad(atmosphere,i,j);
            vGrad = vertGrad(atmosphere,i,j);
            
-           atmosphere{i,j}.temp = atmosphere{i,j}.temp - dt*(...
+           newAtmosphere{i,j}.temp = atmosphere{i,j}.temp - dt*(...
                atmosphere{i,j}.temp*hGrad.u ...
                + atmosphere{i,j}.u*hGrad.temp ...
                + atmosphere{i,j}.temp*vGrad.v ...
                + atmosphere{i,j}.v*vGrad.temp...
                );
+           
+           if((newAtmosphere{i,j}.temp) > 400)
+                j; 
+           end
            
        end
     end

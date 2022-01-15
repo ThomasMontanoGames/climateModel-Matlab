@@ -1,4 +1,4 @@
-function plotAtmosphere(atmosphere)
+function [maxTemp, maxU, maxV] = plotAtmosphere(atmosphere)
 
 %     temp = vertcat([atmosphere.lat],[atmosphere.temp])';
 %     temp = sortrows(temp);
@@ -42,4 +42,7 @@ function plotAtmosphere(atmosphere)
     disp("T: " + round(max(max(tempMatrix))-273.15,1) + " - " + round(min(min(tempMatrix))-273.15,1),' C');
     disp("U: " + round(max(us),2) + " - " + round(min(us),2) + " V: " + round(max(vs),2) + " - " + round(min(vs),2));
 
+    maxTemp = max(max(tempMatrix));
+    maxU = max(us);
+    maxV = max(vs);
 end

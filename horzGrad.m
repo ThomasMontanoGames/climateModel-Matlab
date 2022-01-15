@@ -7,19 +7,22 @@ function gradient = horzGrad(atmosphere,i,j)
     
     if(j == 1)
         upperPoint = atmosphere{i,size(atmosphere,1)};
-        overlap = 2*pi;
+        %overlap = 2*pi;
     else    
         upperPoint = atmosphere{i,j-1};
     end
     
     if(j == size(atmosphere,1))
         lowerPoint = atmosphere{i,1};
-        overlap = 2*pi;
+        %overlap = 2*pi;
     else
         lowerPoint = atmosphere{i,j+1};
     end
     
-    dist = R * abs(sqrt((upperPoint.lat - lowerPoint.lat)^2 + (upperPoint.lon - lowerPoint.lon)^2) - overlap);
+    a = sin((upperPoint.lat - lowerPoint.lat)/2)^2 + cos(upperPoint.lat)*cos(lowerPoint.lat)*sin((upperPoint.lon-lowerPoint.lon)/2)^2;
+    c = 2*atan2(sqrt(a),sqrt(1-a));
+    dist = R * c;
+    %dist = R * abs(sqrt((upperPoint.lat - lowerPoint.lat)^2 + (upperPoint.lon - lowerPoint.lon)^2) - overlap);
     %dist = abs(upperPoint.lon - lowerPoint.lon - overlap);
     %dist = R * abs(acos((sin(upperPoint.lat) * sin(lowerPoint.lat)) + (cos(upperPoint.lat) * cos(lowerPoint.lat) * cos(lowerPoint.lon-upperPoint.lon))) - overlap);
     
