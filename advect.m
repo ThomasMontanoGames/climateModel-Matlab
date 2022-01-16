@@ -8,20 +8,15 @@ function newAtmosphere = advect(atmosphere,dt)
            hGrad = horzGrad(atmosphere,i,j);
            vGrad = vertGrad(atmosphere,i,j);
            
-           newAtmosphere{i,j}.temp = atmosphere{i,j}.temp - dt*(...
+           newAtmosphere{i,j}.temp = max(0,atmosphere{i,j}.temp - dt*(...
                atmosphere{i,j}.temp*hGrad.u ...
                + atmosphere{i,j}.u*hGrad.temp ...
                + atmosphere{i,j}.temp*vGrad.v ...
                + atmosphere{i,j}.v*vGrad.temp...
-               );
-           
-           if((newAtmosphere{i,j}.temp) > 400)
-                j; 
-           end
+               ));
            
        end
     end
-
 end
 
 % self.temp -= dt*( 

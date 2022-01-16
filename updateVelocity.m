@@ -1,7 +1,7 @@
 function newAtmosphere = updateVelocity(atmosphere,dt)
     
     newAtmosphere = atmosphere;
-    c = 0.103;
+    c = 0.5;
     
     for i = 1:size(atmosphere,1)
        for j = 1:size(atmosphere,2)
@@ -18,7 +18,7 @@ function newAtmosphere = updateVelocity(atmosphere,dt)
            newAtmosphere{i,j}.v = atmosphere{i,j}.v - dt*(...
                atmosphere{i,j}.u*hGrad.v ...
                + atmosphere{i,j}.v*vGrad.v...
-               - atmosphere{i,j}.f*atmosphere{i,j}.u ...
+               + atmosphere{i,j}.f*atmosphere{i,j}.u ...
                + c*vGrad.temp);
                
        end

@@ -4,7 +4,7 @@ function atmosphere = generateAtmosphere(worldSize)
 %while(length(sphere) ~= worldSize*worldSize)
     %sphere = %pdisk2([pi 2*pi], 4670);%latDist(worldSize*worldSize);
 %end
-sphere = generateFibSphere(worldSize*worldSize);
+sphere = latDist(worldSize*worldSize);%generateFibSphere(worldSize*worldSize);
 pixels = pixel.empty;
 
 for i = 1:length(sphere)   

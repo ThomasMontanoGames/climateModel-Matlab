@@ -35,16 +35,16 @@ while true
     %timePerStep(steps) = toc;
     
     %if(mod(steps-1,80) == 0)
-        cla;
-        [temp, u, v] = plotAtmosphere(atmosphere);
-        maxU(end+1) = u;
-        maxV(end+1) = v;
-        if(isnan(temp))
-           return; 
-        end
-        title("TIME: " + (time/day) + " days");
-        caxis([100 330]);
-        drawnow;
+    cla;
+    [temp, u, v] = plotAtmosphere(atmosphere);
+    maxU(end+1) = u;
+    maxV(end+1) = v;
+    if(isnan(temp))
+       return; 
+    end
+    title("TIME: " + (time/day) + " days");
+    %caxis([100 330]);
+    drawnow;
     %end
 
     tempMatrix = zeros(worldSize,worldSize);
